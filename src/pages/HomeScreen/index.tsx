@@ -1,4 +1,5 @@
 import React from 'react';
+import { firestore } from '../../config';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
@@ -12,10 +13,10 @@ const HomeScreen = ({navigation}) => {
           <Text style={[styles.usernameText, styles.boldText]}>user!</Text>
         </Animatable.Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SeeScreen')}>
             <Text style={styles.buttonText}>See Votes Response</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, { marginLeft: 10 }]}>
+          <TouchableOpacity style={[styles.button, { marginLeft: 10 }]}  onPress={() => navigation.navigate('CreateScreen')}>
             <Text style={styles.buttonText}>Create Vote</Text>
           </TouchableOpacity>
         </View>

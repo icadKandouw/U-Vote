@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SplashScreen, SignIn, SignUp, SplashSuccess} from '../pages';
+import {SplashScreen, SignIn, SignUp, SplashSuccess,CreateScreen, SeeScreen} from '../pages';
 import HomeScreen from '../pages/HomeScreen';
 import VoteScreen from '../pages/VoteScreen';
 
@@ -37,6 +37,16 @@ const index = () => {
       <Stack.Screen
         name="SplashSuccess"
         component={SplashSuccess}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CreateScreen"
+        component={CreateScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SeeScreen"
+        component={SeeScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

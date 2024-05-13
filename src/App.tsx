@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Router from "./router";
+import './config/';
 const App = () => {
     return (
         <NavigationContainer>

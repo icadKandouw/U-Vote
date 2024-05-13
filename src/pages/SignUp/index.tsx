@@ -12,9 +12,37 @@ import {
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {LinearGradient} from 'react-native-linear-gradient';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 
 const SignUp = ({navigation}) => {
+  const [fullName, setFullName] = useState('');
+  const [nim, setNim] = useState('');
+  const [registrationNumber, setRegistrationNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onSubmit = () => {
+    const data = {
+      fullName : fullName,
+      nim : nim,
+      registrationNumber : registrationNumber,
+      email : email,
+      password :password,
+    };
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+    // Signed up 
+        const user = userCredential.user;
+        console.log(user);
+    })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+    // ..
+  });
+  }
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -30,6 +58,8 @@ const SignUp = ({navigation}) => {
               style={styles.input}
               placeholder="Full Name"
               placeholderTextColor="#ABABA7"
+              value={fullName}
+              onChangeText={setFullName}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -38,6 +68,8 @@ const SignUp = ({navigation}) => {
               style={styles.input}
               placeholder="NIM"
               placeholderTextColor="#ABABA7"
+              value={nim}
+              onChangeText={setNim}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -46,6 +78,8 @@ const SignUp = ({navigation}) => {
               style={styles.input}
               placeholder="Registration Number"
               placeholderTextColor="#ABABA7"
+              value={registrationNumber}
+              onChangeText={setRegistrationNumber}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -54,6 +88,8 @@ const SignUp = ({navigation}) => {
               style={styles.input}
               placeholder="Email"
               placeholderTextColor="#ABABA7"
+              value={email}
+              onChangeText={setEmail}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -62,13 +98,15 @@ const SignUp = ({navigation}) => {
               style={styles.input}
               placeholder="Password"
               placeholderTextColor="#ABABA7"
+              value={password}
+              onChangeText={setPassword}
             />
           </View>
           
 
           <View style={{marginBottom: 25}}></View>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+            <TouchableOpacity onPress={onSubmit}>
               <LinearGradient
                 colors={['#161B90', '#161B90']}
                 style={styles.loginButton}>
